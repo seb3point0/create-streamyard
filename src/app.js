@@ -37,7 +37,7 @@ const createBroadcast = async (headers, title, workspaceId, selectedBrandId, csr
 const createDestination = async (headers, title, description, broadcastId, privacy, destinationId, plannedStartTime, csrfToken) => {
   const url = `https://streamyard.com/api/broadcasts/${broadcastId}/destinations`;
 
-  const boundary = '----WebKitFormBoundaryPUswDIBUVVsMnXl8';
+  const boundary = '----WebKitFormBoundary';
   const boundaryData = '--' + boundary;
 
   headers['content-type'] = `multipart/form-data; boundary=${boundary}`;
