@@ -25,9 +25,11 @@ const createBroadcast = async (headers, title, workspaceId, selectedBrandId, csr
   headers['content-type'] = 'application/json';
 
   const data = { title, "recordOnly": false, selectedBrandId, "type": "studio", csrfToken, localIsolatedRecordings : null };
+  console.log(data);
 
   try {
       const result = await axios.post(url, data, { headers });
+      console.log(result.data);
       return result.data.id;
   } catch (error) {
       console.log(error);
@@ -43,9 +45,11 @@ const createDestination = async (headers, title, description, broadcastId, priva
   headers['content-type'] = `multipart/form-data; boundary=${boundary}`;
     
   const data = `${boundaryData}\r\nContent-Disposition: form-data; name=\"title\"\r\n\r\n${title}\r\n${boundaryData}\r\nContent-Disposition: form-data; name=\"description\"\r\n\r\n${description}\r\n${boundaryData}\r\nContent-Disposition: form-data; name=\"privacy\"\r\n\r\n${privacy}` + (plannedStartTime ? `\r\n${boundaryData}\r\nContent-Disposition: form-data; name=\"plannedStartTime\"\r\n\r\n${plannedStartTime}` : ``) + `\r\n${boundaryData}\r\nContent-Disposition: form-data; name=\"destinationId\"\r\n\r\n${destinationId}\r\n${boundaryData}\r\nContent-Disposition: form-data; name=\"csrfToken\"\r\n\r\n${csrfToken}\r\n${boundaryData}--\r\n`;
-  
+  console.log(data);
+
   try {
       const result = await axios.post(url, data, { headers });
+      console.log(result.data);
       return result.data.output;
   } catch (error) {
       console.log(error);
