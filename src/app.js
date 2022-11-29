@@ -24,7 +24,7 @@ const createBroadcast = async (headers, title, workspaceId, selectedBrandId, csr
 
   headers['content-type'] = 'application/json';
 
-  const data = { title, "recordOnly": false, selectedBrandId, "type": "studio", csrfToken };
+  const data = { title, "recordOnly": false, selectedBrandId, "type": "studio", csrfToken, localIsolatedRecordings : null };
 
   try {
       const result = await axios.post(url, data, { headers });
